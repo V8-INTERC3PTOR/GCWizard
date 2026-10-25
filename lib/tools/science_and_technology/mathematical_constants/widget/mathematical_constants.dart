@@ -25,18 +25,16 @@ class MathematicalConstants extends StatefulWidget {
 
 class _MathematicalConstantsState extends State<MathematicalConstants> {
   String _currentConstant = '';
-  late Map<String, MathematicalConstant> _constants;
+  Map<String, MathematicalConstant> _constants = {};
 
   final List<String> _orderedConstantKeys = [];
 
   @override
-  void initState() {
-    super.initState();
-    _constants = _buildConstants(context);
-  }
-
-  @override
   Widget build(BuildContext context) {
+    if (_constants.isEmpty) {
+      _constants = _buildConstants(context);
+    }
+
     return Column(
       children: <Widget>[
         GCWDropDown<String>(
